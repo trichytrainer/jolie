@@ -17,14 +17,16 @@ volumes = {
 
 container = client.containers.run(
     image=image,
-    command="sh -c 'pip3 install pytest && cd code && ls && python tmp/testrunner.py'",
+    command="sh -c 'pip3 install pytest && cd code && python tmp/testrunner.py'",
     volumes=volumes,
     detach=True
 )
 
 print(client.containers.list())
+
 stderr = ''
 stdout = ''
+
 for line in container.logs(stream=True, stderr=True, stdout=False):
     stderr += line.decode('utf-8')
 
