@@ -17,7 +17,7 @@ volumes = {
 
 container = client.containers.run(
     image=image,
-    command="sh -c 'pip3 install pytest && cd code && python tmp/testrunner.py'",
+    command="sh -c 'pip3 install pytest && cd code && python testrunner.py'",
     volumes=volumes,
     detach=True
 )

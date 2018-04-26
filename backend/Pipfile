@@ -8,8 +8,6 @@ name = "pypi"
 [packages]
 
 docker = "*"
-django = "*"
-djangorestframework = "*"
 
 
 [dev-packages]
