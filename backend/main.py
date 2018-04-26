@@ -21,4 +21,4 @@ container = client.containers.run(
 )
 
 for line in container.logs(stream=True):
-    print(line.decode('utf-8'))
+    print(line.decode('utf-8').rstrip())
