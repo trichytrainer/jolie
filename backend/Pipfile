@@ -8,6 +8,8 @@ name = "pypi"
 [packages]
 
 docker = "*"
+flask = "*"
+flask-restful = "*"
 
 
 [dev-packages]
