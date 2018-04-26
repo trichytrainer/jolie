@@ -2,4 +2,6 @@ backend/.idea
 backend/.pytest_cache
 backend/tmp/.pytest_cache
 backend/tmp/__pycache__
+backend/tmp/tests/__pycache__/
+backend/tests/__pycache__
 

@@ -17,15 +17,18 @@ volumes = {
 
 container = client.containers.run(
     image=image,
-    command="sh -c 'pip3 install pytest && cd code && ls && pytest ./tmp ' ",
+    command="sh -c 'pip3 install pytest && cd code && ls && pytest ./tmp && RC=$? && echo $RC'",
     volumes=volumes,
     detach=True
 )
 
 print(client.containers.list())
+full_trace = ''
 
 for line in container.logs(stream=True):
     print(line.decode('utf-8').rstrip())
+    full_trace += line.decode('utf-8')
 
+print(full_trace)
 container.stop()
-deleted = client.containers.prune()
+deleted_containers = client.containers.prune()
