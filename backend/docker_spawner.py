@@ -3,8 +3,8 @@ import time
 import docker
 
 class DockerClient:
-    def __init__(self):
-        self.client = docker.from_env()
+    def __init__(self, client=docker.from_env()):
+        self.client = client
         self.current_path = os.path.dirname(os.path.realpath(__file__))
         self.volumes = {
             self.current_path: {
@@ -44,41 +44,3 @@ class DockerClient:
 
     def clear_containers(self):
         return self.client.containers.prune()
-
-
-"""
-client = docker.from_env()
-current_path = os.path.dirname(os.path.realpath(__file__))
-image = "python:3.7-rc-stretch"
-
-volumes = {
-    current_path: {
-        'bind': '/code',
-        'mode': 'rw'
-    }
-}
-
-container = client.containers.run(
-    image=image,
-    command="sh -c 'pip3 install pytest && cd code && python testrunner.py'",
-    volumes=volumes,
-    detach=True
-)
-
-print(client.containers.list())
-
-stderr = ''
-stdout = ''
-
-for line in container.logs(stream=True, stderr=True, stdout=False):
-    stderr += line.decode('utf-8')
-
-for line in container.logs(stream=True, stderr=False, stdout=True):
-    stdout += line.decode('utf-8')
-
-print('standardout: ' + stdout)
-print('standarderr: ' + stderr)
-
-container.stop()
-deleted_containers = client.containers.prune()
-"""
