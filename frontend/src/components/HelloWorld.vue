@@ -63,5 +63,6 @@ a {
 
 .editor {
   text-align: left;
+  width: 100%;
 }
 </style>
