@@ -15,7 +15,7 @@ CORS(app)
 
 
 @celery.task()
-def start_exec_run():
+def start_exec_run(code):
     c = DockerClient()
     container = c.spawn_container(
         image='python:3.7-rc-stretch',
@@ -51,7 +51,7 @@ def add(a, b):
         file = open('tmp/usercode.py', 'w')
         file.write(code)
         file.close()
-        finished_logs = start_exec_run.delay()
+        finished_logs = start_exec_run.delay(code)
         return finished_logs.wait()
 
 
