@@ -11,6 +11,7 @@
       >
       </monaco-editor>
     </div>
+    <v-btn color="info" @click="submit()">Submit</v-btn>
   </div>
 </template>
 
@@ -39,6 +40,13 @@ export default {
     },
     onCodeChange: function (editor) {
       this.userCode = editor.getValue()
+    },
+    submit: function () {
+      this.$http.post('http://localhost:5000/home', {code: this.userCode}).then(response => {
+        console.log(response)
+      }).catch(err => {
+        console.log(err)
+      }) 
     }
   }
 }
